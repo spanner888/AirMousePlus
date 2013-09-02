@@ -332,16 +332,20 @@ for (int i = 0; i <20; i++){
 }
 Serial.println("AFTER - debug wait for 10 seconds") ;
 
-    Mouse.begin();
-
     Wire.begin();
 
     my3IMU.init(true);                // parameter = "true" says init fast mode = 400KHz I2C
+//TODO ++++ try non-fast I2C speed - as might work OK on slow - and then maybe less issues.......
+
 
 #ifdef FREEIMU_TAP
   my3IMU.accgyro.setFullScaleAccelRange(1); // set accelerometer to 4g range
   delay(10);
 #endif
+
+    Mouse.begin();        // Trying this at end of setup 
+                            // - may reduce any iteraction with MMU sensor!
+                            // and code upload....
 
 }
 
